@@ -27,8 +27,16 @@ body {
   flex-direction: column;
 }
 
+.container--space-between {
+  justify-content: space-between;
+}
+
+.container--space-around {
+  justify-content: space-around;
+}
+
 .item {
   border: 1px solid #f00;
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
