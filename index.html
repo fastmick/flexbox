@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,38 @@
     <title>flexbox</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-    flexbox!
+    <div class="main-wrapper">
+        <h1>flexbox examples</h1>
+        <div class="code-wrapper">
+            <strong>parent</strong><br> 
+            <code>
+                dispay: flex;
+            </code>
+        </div>
+        <div class="container">
+            <div class="item">box 1</div>
+            <div class="item">box 2</div>
+            <div class="item">box 3</div>
+            <div class="item">box 4</div>
+        </div>
+
+        <div class="code-wrapper">
+            <strong>parent</strong><br>
+            <code>
+                dispay: flex;<br>
+                flex-direction: column;
+            </code>
+        </div>
+        <div class="container container--column">
+            <div class="item">box 1</div>
+            <div class="item">box 2</div>
+            <div class="item">box 3</div>
+            <div class="item">box 4</div>
+        </div>
+    </div>
+
 </body>
+
 </html>
