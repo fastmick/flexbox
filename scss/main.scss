@@ -7,37 +7,63 @@ body {
 }
 
 .main-wrapper {
+    margin: 0 auto;
     width: 800px;
 }
 
 .code-wrapper {
     border: 1px solid #000;
     background: #999;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .container {
-    border: 1px solid #000;
+    border: 1px solid #999;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     width: 800px;
 
+    &--row-reverse {
+        flex-direction: row-reverse;
+    }
     &--column {
+        height: 450px;
         flex-direction: column;
     }
+    &--column-reverse {
+        height: 450px;
+        flex-direction: column-reverse;
+    }
+
 
     &--space-between {
         justify-content: space-between;
     }
-
     &--space-around {
         justify-content: space-around;
     }
+
+    
 }
 
 .item {
-    border: 1px solid #f00;
     height: 100px;
+    text-align: center;
     width: 100px;
-}
 
+    
+    &--1 {
+        background: #f00;
+    }
+    &--2 {
+        background: #ccc;
+    }
+    &--3 {
+        color: #fff;
+        background: #666;
+    }
+    &--4 {
+        color: #fff;
+        background: #00f;
+    }
+}
