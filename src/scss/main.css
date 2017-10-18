@@ -46,6 +46,22 @@ body {
   justify-content: space-around;
 }
 
+.container--space-evenly {
+  justify-content: space-evenly;
+}
+
+.container--flex-start {
+  justify-content: flex-start;
+}
+
+.container--flex-end {
+  justify-content: flex-end;
+}
+
+.container--center {
+  justify-content: center;
+}
+
 .item {
   height: 100px;
   text-align: center;
