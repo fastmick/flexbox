@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<project basedir="." name="my own site" default="build">
+
+   <!-- important to build css files with sass when use os windows -->
+   <condition property="exec_file" value="sass.bat" else="sass" >
+      <os family="windows" />
+   </condition>
+   
+
+   <property file="build.properties"/>
+   
+   <!-- common infos -->
+   <target name="info">
+      <echo>pache Ant version is ${ant.version} - You are at ${sitename}</echo>
+      <echo>Directory: ${basedir}</echo>
+      <echo>Build: ${buildversion}</echo>
+      <echo>css dir: ${css.dir}</echo>
+      <echo>sass dir: ${sass.dir}</echo>    
+   </target>
+
+   <!-- build final -->
+   <target name="build" >
+      <echo>clean dist-folder</echo>
+
+      <delete includeemptydirs="true">
+         <fileset dir="${target.dir}" includes="**/*"/>
+      </delete>
+      
+      <echo>build project (final)</echo>
+      
+      <!-- create directories -->
+      <mkdir dir="${target.dir}/css"/>
+      <mkdir dir="${target.dir}/images"/>
+      <mkdir dir="${target.dir}/js"/>
+      
+      <!-- copy files -->
+      <copy todir="${target.dir}/js">
+         <fileset dir="${src.dir}/js"/>
+      </copy>
+      
+      <copy todir="${target.dir}/images">
+         <fileset dir="${src.dir}/images"/>
+      </copy>
+      
+
+      <!-- minify/copy html -->
+      <apply executable="java">
+         <fileset dir="${src.dir}" includes="**/*.html"/>
+         <arg value="-jar"/>
+         <arg path="${lib.dir}/htmlcompressor-1.5.3.jar"/>
+         <arg line="-t html"/>
+         <srcfile/>
+         <arg value="-o"/>
+         <mapper type="glob" from="*" to="${target.dir}/*"/>
+         <targetfile/>
+      </apply>
+      
+
+      <!-- scss to css compressed -->
+      <delete includeemptydirs="true">
+         <fileset dir="${css.dir}" includes="**/*"/>
+      </delete>
+      <mkdir dir="${src.dir}/css"/>
+
+      <apply dest="${css.dir}" executable="${exec_file}">
+         <srcfile/>
+         <targetfile/>
+         
+         <arg line="--style compressed" />
+         <fileset dir="${sass.dir}" includes="*.scss" excludes="**/_*" />
+         <mapper from="*.scss" to="*.css" type="glob"/>
+      </apply>
+
+      <copy todir="${target.dir}/css">
+         <fileset dir="${src.dir}/css"/>
+      </copy>
+
+   </target>
+
+
+
+
+
+
+   <target name="build-dev" >
+      <echo>clean project</echo>
+
+      <delete includeemptydirs="true">
+         <fileset dir="${target.dir}" includes="**/*"/>
+      </delete>
+      
+      <echo>build project (dev)</echo>
+      
+      <!-- create directories -->
+      <mkdir dir="${target.dir}/css"/>
+      <mkdir dir="${target.dir}/images"/>
+      <mkdir dir="${target.dir}/js"/>
+      
+      
+      <!-- scss to css with line comments -->
+      <delete includeemptydirs="true">
+         <fileset dir="${css.dir}" includes="**/*"/>
+      </delete>
+      <mkdir dir="${src.dir}/css"/>
+
+      <apply dest="${css.dir}" executable="${exec_file}">
+         <srcfile/>
+         <targetfile/>
+         
+         <arg line="--line-comments" />
+         <fileset dir="${sass.dir}" includes="*.scss" excludes="**/_*" />
+         <mapper from="*.scss" to="*.css" type="glob"/>
+      </apply>
+
+
+      <!-- copy files -->
+      <copy todir="${target.dir}/css">
+         <fileset dir="${src.dir}/css"/>
+      </copy>
+
+      <copy todir="${target.dir}/js">
+         <fileset dir="${src.dir}/js"/>
+      </copy>
+      
+      <copy todir="${target.dir}/images">
+         <fileset dir="${src.dir}/images"/>
+      </copy>
+
+      <copy todir="${target.dir}">
+         <fileset dir="${src.dir}" includes="*.html"/>
+      </copy>
+  
+   </target>
+
+
+   
+
+    <target name="sass">
+         
+      <delete includeemptydirs="true">
+         <fileset dir="${css.dir}" includes="**/*"/>
+      </delete>
+      <mkdir dir="${src.dir}/css"/>
+
+      <apply dest="${css.dir}" executable="${exec_file}">
+         <srcfile/>
+         <targetfile/>
+         
+         <arg line="--line-comments" />
+         <fileset dir="${sass.dir}" includes="*.scss" excludes="**/_*" />
+         <mapper from="*.scss" to="*.css" type="glob"/>
+      </apply>
+    </target>
+
+
+
+
+   <target name="copy" >
+      <echo>copy it</echo>
+      
+   </target>
+   
+</project>
