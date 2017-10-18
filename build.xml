@@ -157,6 +157,15 @@
 
    <target name="copy" >
       <echo>copy it</echo>
+
+      <!-- copy files -->
+      <copy todir="${target.dir}/css">
+         <fileset dir="${src.dir}/css"/>
+      </copy>
+
+      <copy todir="${target.dir}">
+         <fileset dir="${src.dir}" includes="*.html"/>
+      </copy>
       
    </target>
    
