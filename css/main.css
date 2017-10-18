@@ -46,10 +46,6 @@ body {
   justify-content: space-around;
 }
 
-.container--space-evenly {
-  justify-content: space-evenly;
-}
-
 .container--flex-start {
   justify-content: flex-start;
 }
